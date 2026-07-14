@@ -36,8 +36,13 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
 
 ## P1 — Fase 2 (kegunaan lebih)
 
-- [ ] **Export / Import JSON** — belum ada. Ini juga mitigasi risiko utama kehilangan data lokal. Lihat
-      **PRD §7.6** dan **§12** (tabel risiko).
+- [x] **Export / Import JSON** — selesai. Tombol "Export Data"/"Import Data" di `SettingsPanel.tsx`,
+      logic murni di `src/exportImport.ts` (validasi struktur + integritas referensial `roomId`↔`room.id`),
+      import bersifat **replace-total** (transaksi Dexie atomik di `store.ts`) dengan konfirmasi sebelum
+      menimpa data. Lihat **PRD §7.6** dan **§12** (tabel risiko).
+
+  Spec & plan implementasi: `docs/superpowers/specs/2026-07-14-export-import-json-design.md` dan
+  `docs/superpowers/plans/2026-07-14-export-import-json.md`.
 - [ ] **Grafik / visualisasi ranking kontribusi biaya** — saat ini perangkat sudah terurut dari biaya
       tertinggi (teks), tapi belum ada representasi grafik/chart seperti disebut PRD. Lihat **PRD §6**
       (tabel prioritas fitur) dan **§14.2**.
