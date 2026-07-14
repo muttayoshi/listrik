@@ -89,7 +89,7 @@ export function validateImportPayload(raw: unknown): ValidationResult {
   if (!isValidSettings(raw.settings)) {
     return { ok: false, error: 'Data pengaturan tidak valid.' }
   }
-  const settings: Settings = { id: 1, ...raw.settings }
+  const settings: Settings = { ...raw.settings, id: 1 }
 
   const roomIds = new Set(rooms.map((r) => r.id))
   if (devices.some((d) => !roomIds.has(d.roomId))) {
