@@ -6,6 +6,7 @@ import RoomCard from './components/RoomCard'
 import RoomForm from './components/RoomForm'
 import DeviceForm from './components/DeviceForm'
 import SettingsPanel from './components/SettingsPanel'
+import InstallBanner from './components/InstallBanner'
 
 type Modal =
   | { type: 'addRoom' }
@@ -71,6 +72,8 @@ export default function App() {
           </button>
         </div>
       </header>
+
+      <InstallBanner />
 
       {/* Main */}
       <main className="max-w-2xl mx-auto px-4 pt-5 pb-28">
