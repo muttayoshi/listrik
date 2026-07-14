@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { v4 as uuid } from 'uuid'
 import { db, type Device, type Room, type Settings, getSettings, saveSettings } from './db'
+import type { ExportPayload } from './exportImport'
 
 interface AppState {
   rooms: Room[]
@@ -18,6 +19,7 @@ interface AppState {
   deleteDevice: (id: string) => Promise<void>
   // Settings
   updateSettings: (s: Settings) => Promise<void>
+  importData: (payload: ExportPayload) => Promise<void>
 }
 
 export const useStore = create<AppState>((set, get) => ({
@@ -85,5 +87,19 @@ export const useStore = create<AppState>((set, get) => ({
   updateSettings: async (settings) => {
     await saveSettings(settings)
     set({ settings })
+  },
+
+  importData: async (payload) => {
+    await db.transaction('rw', db.rooms, db.devices, db.settings, async () => {
+      await db.rooms.clear()
+      await db.devices.clear()
+      await db.settings.clear()
+      await db.rooms.bulkAdd(payload.rooms)
+      await db.devices.bulkAdd(payload.devices)
+      await db.settings.put(payload.settings)
+    })
+    const rooms = [...payload.rooms].sort((a, b) => a.order - b.order)
+    const devices = [...payload.devices].sort((a, b) => a.createdAt - b.createdAt)
+    set({ rooms, devices, settings: payload.settings })
   },
 }))
