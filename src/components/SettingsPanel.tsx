@@ -11,12 +11,15 @@ export default function SettingsPanel({ onClose }: Props) {
   const { settings, updateSettings } = useStore()
   const [tariff, setTariff] = useState(String(settings.tariffPerKwh))
   const [days, setDays] = useState(String(settings.daysPerMonth))
+  const [ppj, setPpj] = useState(String(settings.ppjPercent))
 
   async function handleSave() {
     const t = parseFloat(tariff)
     const d = parseInt(days)
+    const p = parseFloat(ppj)
     if (isNaN(t) || t <= 0 || isNaN(d) || d < 1 || d > 31) return
-    await updateSettings({ ...settings, tariffPerKwh: t, daysPerMonth: d })
+    if (isNaN(p) || p < 0 || p > 10) return
+    await updateSettings({ ...settings, tariffPerKwh: t, daysPerMonth: d, ppjPercent: p })
     onClose()
   }
 
@@ -96,6 +99,22 @@ export default function SettingsPanel({ onClose }: Props) {
               onChange={(e) => setDays(e.target.value)}
               min={1}
               max={31}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono"
+            />
+          </div>
+
+          {/* PPJ */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+              PPJ (%)
+            </label>
+            <input
+              type="number"
+              value={ppj}
+              onChange={(e) => setPpj(e.target.value)}
+              min={0}
+              max={10}
+              step={0.1}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono"
             />
           </div>
