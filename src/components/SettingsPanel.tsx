@@ -29,12 +29,12 @@ export default function SettingsPanel({ onClose }: Props) {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl">
-        <div className="flex justify-center pt-3 pb-1 sm:hidden">
+      <div className="relative z-10 w-full sm:max-w-md max-h-[85vh] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col">
+        <div className="flex justify-center pt-3 pb-1 sm:hidden shrink-0">
           <div className="w-10 h-1 rounded-full bg-gray-200" />
         </div>
 
-        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100">
+        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100 shrink-0">
           <h2
             className="text-base font-bold text-gray-900"
             style={{ fontFamily: 'var(--font-display)' }}
@@ -49,7 +49,7 @@ export default function SettingsPanel({ onClose }: Props) {
           </button>
         </div>
 
-        <div className="px-5 py-4 space-y-5">
+        <div className="px-5 py-4 space-y-5 overflow-y-auto min-h-0">
           {/* Tariff presets */}
           <div>
             <label className="text-xs font-semibold text-gray-600 mb-2 block" style={{ fontFamily: 'var(--font-display)' }}>
@@ -126,7 +126,7 @@ export default function SettingsPanel({ onClose }: Props) {
           </div>
         </div>
 
-        <div className="px-5 pb-5">
+        <div className="px-5 pb-5 pt-3 border-t border-gray-100 shrink-0">
           <button
             onClick={handleSave}
             className="w-full py-3.5 rounded-2xl text-white font-bold text-sm transition-all hover:opacity-90 active:scale-[0.98]"

@@ -118,9 +118,9 @@ export default function App() {
         )}
       </main>
 
-      {/* FAB — only shows when rooms exist */}
+      {/* FAB — mobile only; desktop uses the inline "Tambah Ruangan" button in the list */}
       {rooms.length > 0 && (
-        <div className="fixed bottom-6 right-4 sm:right-1/2 sm:-translate-x-[-calc(min(50vw,32rem)-1rem)] z-30">
+        <div className="fixed bottom-6 right-4 sm:hidden z-30">
           <button
             onClick={() => setModal({ type: 'addRoom' })}
             className="flex items-center gap-2.5 px-5 py-3.5 rounded-full text-white font-bold text-sm shadow-lg hover:shadow-xl active:scale-95 transition-all"
