@@ -1,17 +1,20 @@
-import { useState } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import { useStore } from '../store'
 import { PLN_TARIFFS } from '../db'
 import { formatRupiah } from '../utils'
+import { buildExportPayload, downloadJson, exportFilename, validateImportPayload } from '../exportImport'
 
 interface Props {
   onClose: () => void
 }
 
 export default function SettingsPanel({ onClose }: Props) {
-  const { settings, updateSettings } = useStore()
+  const { rooms, devices, settings, updateSettings, importData } = useStore()
   const [tariff, setTariff] = useState(String(settings.tariffPerKwh))
   const [days, setDays] = useState(String(settings.daysPerMonth))
   const [ppj, setPpj] = useState(String(settings.ppjPercent))
+  const [importError, setImportError] = useState('')
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function handleSave() {
     const t = parseFloat(tariff)
@@ -20,6 +23,41 @@ export default function SettingsPanel({ onClose }: Props) {
     if (isNaN(t) || t <= 0 || isNaN(d) || d < 1 || d > 31) return
     if (isNaN(p) || p < 0 || p > 10) return
     await updateSettings({ ...settings, tariffPerKwh: t, daysPerMonth: d, ppjPercent: p })
+    onClose()
+  }
+
+  function handleExport() {
+    const payload = buildExportPayload(rooms, devices, settings)
+    downloadJson(payload, exportFilename())
+  }
+
+  function handleImportClick() {
+    setImportError('')
+    fileInputRef.current?.click()
+  }
+
+  async function handleFileSelected(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(await file.text())
+    } catch {
+      setImportError('File bukan JSON yang valid.')
+      return
+    }
+
+    const result = validateImportPayload(parsed)
+    if (!result.ok) {
+      setImportError(result.error)
+      return
+    }
+
+    if (!window.confirm('Ini akan mengganti semua data yang ada saat ini. Lanjutkan?')) return
+
+    await importData(result.data)
     onClose()
   }
 
@@ -117,6 +155,38 @@ export default function SettingsPanel({ onClose }: Props) {
               step={0.1}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono"
             />
+          </div>
+
+          {/* Export / Import */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+              Cadangkan Data
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={handleExport}
+                className="py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Export Data
+              </button>
+              <button
+                onClick={handleImportClick}
+                className="py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Import Data
+              </button>
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json,application/json"
+              aria-label="Import Data"
+              className="hidden"
+              onChange={handleFileSelected}
+            />
+            {importError && <p className="text-xs text-red-500 mt-1.5">{importError}</p>}
           </div>
 
           <div className="rounded-xl bg-amber-50 border border-amber-200 p-3">
