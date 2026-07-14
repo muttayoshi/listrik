@@ -10,17 +10,29 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
 
 ## P0 — MVP, belum lolos kriteria penerimaan (PRD §16)
 
-- [ ] **PWA Web App Manifest** — belum ada `manifest.json`, ikon 192×192/512×512, ikon `maskable`, atau
-      `apple-touch-icon`. Lihat **PRD §10.1** untuk field yang wajib ada.
-- [ ] **Service Worker** — belum ada precache app-shell / strategi cache-first. Rekomendasi PRD: pakai
-      `vite-plugin-pwa` (Workbox) alih-alih SW manual. Lihat **PRD §10.2**.
-- [ ] **Installability** — belum ada handler `beforeinstallprompt` (tombol "Pasang aplikasi") maupun instruksi
-      manual "Add to Home Screen" untuk iOS/Safari. Lihat **PRD §10.3**.
-- [ ] **Verifikasi offline & audit Lighthouse PWA** — belum bisa diverifikasi karena manifest & SW di atas
-      belum ada; ini salah satu item kriteria penerimaan MVP. Lihat **PRD §16** (checklist penuh) dan **§10.4**.
-- [ ] **Input PPJ% di Settings** — field `ppjPercent` sudah ada di model data (`db.ts`) dan sudah dipakai di
-      formula `calcDevice`, tapi `SettingsPanel.tsx` belum punya input untuk mengubahnya dari UI. Lihat
+- [x] **PWA Web App Manifest** — selesai. `vite-plugin-pwa` (`generateSW`) menghasilkan `manifest.webmanifest`
+      dengan `name`/`short_name`/`theme_color`/`background_color`/`display: standalone`, ikon 192×192, 512×512,
+      512×512 `maskable`, dan `apple-touch-icon` (digenerate via `scripts/generate-icons.mjs`, placeholder —
+      siap diganti aset brand final). Lihat **PRD §10.1**.
+- [x] **Service Worker** — selesai. Workbox via `vite-plugin-pwa`, precache app-shell penuh, `registerType:
+      'autoUpdate'` (SW baru aktif & reload otomatis — **catatan: ini menyimpang dari PRD §10.2** yang minta
+      prompt manual "Versi baru tersedia"; keputusan disengaja, lihat spec di bawah). Lihat **PRD §10.2**.
+- [x] **Installability** — selesai. `InstallBanner` menangani `beforeinstallprompt` (tombol "Pasang aplikasi")
+      di Android/Chrome, dan menampilkan instruksi manual "Tambah ke Layar Utama" di iOS/Safari (tidak ada
+      `beforeinstallprompt` di iOS). `apple-mobile-web-app-capable` dkk. ditambahkan ke `index.html`. Lihat
+      **PRD §10.3**.
+- [ ] **Verifikasi offline & audit Lighthouse PWA** — manifest, SW, dan build sudah diverifikasi otomatis
+      (precache, field manifest, HTTP 200 pada `manifest.webmanifest`/`sw.js`). **Audit Lighthouse asli dan
+      tes offline di browser sungguhan belum dijalankan** — environment pengerjaan tidak punya Chrome/Lighthouse
+      CLI. Checklist manual ada di
+      `docs/superpowers/specs/2026-07-14-pwa-manual-verification-checklist.md` — perlu dijalankan manual
+      sebelum item ini dianggap lolos kriteria penerimaan MVP. Lihat **PRD §16** dan **§10.4**.
+- [x] **Input PPJ% di Settings** — selesai. Input "PPJ (%)" ditambahkan di `SettingsPanel.tsx` (validasi 0–10),
+      terhubung ke field `ppjPercent` yang sudah ada di model data (`db.ts`) dan formula `calcDevice`. Lihat
       **PRD §7.4** dan model data **§9.2**.
+
+  Spec & plan implementasi: `docs/superpowers/specs/2026-07-14-pwa-installability-offline-design.md` dan
+  `docs/superpowers/plans/2026-07-14-pwa-installability-offline.md`.
 
 ## P1 — Fase 2 (kegunaan lebih)
 
