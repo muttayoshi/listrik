@@ -25,8 +25,8 @@ export default function ShareView({ hash, onExit }: Props) {
       <div className="min-h-screen flex items-center justify-center px-6" style={{ background: 'var(--color-surface)' }}>
         <div className="text-center max-w-xs">
           <div className="text-4xl mb-3">⚠️</div>
-          <p className="text-sm text-gray-500 mb-4">{result.error}</p>
-          <button onClick={onExit} className="text-sm font-semibold text-emerald-600 hover:text-emerald-700">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{result.error}</p>
+          <button onClick={onExit} className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300">
             Kembali ke aplikasi
           </button>
         </div>
@@ -48,18 +48,17 @@ export default function ShareView({ hash, onExit }: Props) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--color-surface)' }}>
       <header
-        className="sticky top-0 z-40 backdrop-blur-md border-b border-emerald-100/60"
-        style={{ background: 'rgba(248, 255, 254, 0.9)' }}
+        className="sticky top-0 z-40 backdrop-blur-md border-b border-emerald-100/60 dark:border-emerald-800/60 bg-[rgba(248,255,254,0.9)] dark:bg-[rgba(13,42,31,0.85)]"
       >
         <div className="max-w-2xl mx-auto px-4 h-14 flex items-center">
-          <span className="font-extrabold text-gray-900 text-base tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+          <span className="font-extrabold text-gray-900 dark:text-gray-100 text-base tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             👁️ Pratinjau Data Dibagikan
           </span>
         </div>
       </header>
 
       <main className="max-w-2xl mx-auto px-4 pt-5 pb-28">
-        <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 mb-5 text-xs text-amber-700">
+        <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-3 mb-5 text-xs text-amber-700 dark:text-amber-300">
           Ini pratinjau data yang dibagikan orang lain — bukan data kamu sendiri.
         </div>
 
@@ -86,27 +85,27 @@ export default function ShareView({ hash, onExit }: Props) {
             const roomDevices = devices.filter((d) => d.roomId === room.id)
             const roomCost = roomDevices.reduce((sum, d) => sum + calcDevice(d, settings).monthlyCost, 0)
             return (
-              <div key={room.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-50">
+              <div key={room.id} className="bg-white dark:bg-emerald-950 rounded-2xl border border-gray-100 dark:border-emerald-900 shadow-sm overflow-hidden">
+                <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-50 dark:border-emerald-900">
                   <span className="text-xl leading-none">{room.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="font-bold text-gray-900 text-sm" style={{ fontFamily: 'var(--font-display)' }}>{room.name}</p>
-                    <p className="text-xs text-gray-400">{roomDevices.length} perangkat</p>
+                    <p className="font-bold text-gray-900 dark:text-gray-100 text-sm" style={{ fontFamily: 'var(--font-display)' }}>{room.name}</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500">{roomDevices.length} perangkat</p>
                   </div>
-                  <p className="font-bold text-emerald-700 text-sm" style={{ fontFamily: 'var(--font-display)' }}>{formatRupiah(roomCost)}</p>
+                  <p className="font-bold text-emerald-700 dark:text-emerald-300 text-sm" style={{ fontFamily: 'var(--font-display)' }}>{formatRupiah(roomCost)}</p>
                 </div>
-                <div className="divide-y divide-gray-50">
+                <div className="divide-y divide-gray-50 dark:divide-emerald-900">
                   {roomDevices.map((device) => {
                     const { monthlyKwh, monthlyCost } = calcDevice(device, settings)
                     return (
                       <div key={device.id} className="flex items-center justify-between px-4 py-2.5">
                         <div>
-                          <p className="text-sm font-semibold text-gray-700">{device.name}</p>
-                          <p className="text-xs text-gray-400" style={{ fontFamily: 'var(--font-mono)' }}>
+                          <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">{device.name}</p>
+                          <p className="text-xs text-gray-400 dark:text-gray-500" style={{ fontFamily: 'var(--font-mono)' }}>
                             {device.watt} W · {device.hoursPerDay} jam/hari · {formatKwh(monthlyKwh)} kWh
                           </p>
                         </div>
-                        <p className="text-sm font-semibold text-gray-900">{formatRupiah(monthlyCost)}</p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{formatRupiah(monthlyCost)}</p>
                       </div>
                     )
                   })}
@@ -117,11 +116,11 @@ export default function ShareView({ hash, onExit }: Props) {
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-emerald-950 border-t border-gray-100 dark:border-emerald-900 p-4">
         <div className="max-w-2xl mx-auto flex gap-2">
           <button
             onClick={onExit}
-            className="flex-1 py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:border-gray-300 transition-colors"
+            className="flex-1 py-3 rounded-xl border border-gray-200 dark:border-emerald-800 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-emerald-700 transition-colors"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Tutup Pratinjau
