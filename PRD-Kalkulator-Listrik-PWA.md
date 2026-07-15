@@ -358,9 +358,12 @@ Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat ap
 - **Titik akses:** tautan kecil "❤️ Traktir Kopi Pengembang" di footer dashboard (selalu terlihat,
   baik saat ada ruangan maupun saat empty state), dan tombol dengan teks sama di dalam panel
   Settings (`SettingsPanel.tsx`) — dua jalur ke modal yang sama.
-- **Bentuk:** modal statis di dalam aplikasi, berisi daftar platform donasi (nama + tautan
-  eksternal, opsional gambar QR). Konsisten dengan pola modal lain di aplikasi ini
-  (Settings, Tambah Ruangan, dst.) — tidak ada halaman/route baru.
+- **Bentuk:** modal statis di dalam aplikasi, dua langkah. Langkah 1 menampilkan menu 3
+  pilihan kopi ("Kopi Tuku – Kopi Susu Tetangga", "Kopi Family Mart – Kopi Susu Keluarga",
+  "Point Coffee – Himalayan Butterscotch"), masing-masing dengan ikon, nama, dan harga.
+  Memilih salah satu membuka langkah 2: ringkasan kopi terpilih dan area kode QRIS untuk
+  discan manual. Konsisten dengan pola modal lain di aplikasi ini (Settings, Tambah Ruangan,
+  dst.) — tidak ada halaman/route baru.
 - **Bukan proses pembayaran in-app.** Aplikasi tidak memproses, menyimpan, atau meneruskan
   data pembayaran apa pun. Modal hanya menautkan keluar ke platform pihak ketiga (mis.
   Saweria, Trakteer, QRIS) yang dikelola pengguna sendiri di luar aplikasi ini — selaras
@@ -369,10 +372,11 @@ Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat ap
   merujuk pada transaksi listrik/PLN (mis. beli token listrik dalam aplikasi), **bukan**
   donasi dukungan ke pembuat aplikasi. Kedua hal ini berbeda konteks dan tidak saling
   bertentangan.
-- **Status data platform:** daftar platform donasi kosong secara default sampai pemilik
-  produk menyediakan tautan/QR asli — aplikasi menampilkan pesan jujur ("Tautan donasi
-  belum ditambahkan") alih-alih tautan placeholder yang bisa disalahartikan sebagai tujuan
-  pembayaran sungguhan.
+- **Status QRIS:** belum ada gambar QRIS asli dari pemilik aplikasi. Langkah 2 menampilkan
+  placeholder jujur (ikon bingkai QR bergaya outline + teks "QRIS belum tersedia — pemilik
+  aplikasi belum menambahkan kode QRIS asli") alih-alih gambar yang bisa disalahartikan
+  sebagai kode scan sungguhan. Menambahkan QRIS asli nanti adalah perubahan konten kecil
+  (satu file gambar + satu swap JSX), bukan perubahan arsitektur.
 
 ---
 
