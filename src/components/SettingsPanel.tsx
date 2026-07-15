@@ -4,6 +4,7 @@ import { PLN_TARIFFS } from '../db'
 import { formatRupiah } from '../utils'
 import { buildExportPayload, downloadJson, exportFilename, validateImportPayload } from '../exportImport'
 import DonationModal from './DonationModal'
+import { useTheme } from '../theme'
 
 interface Props {
   onClose: () => void
@@ -11,6 +12,7 @@ interface Props {
 
 export default function SettingsPanel({ onClose }: Props) {
   const { rooms, devices, settings, updateSettings, importData } = useStore()
+  const [theme, setTheme] = useTheme()
   const [tariff, setTariff] = useState(String(settings.tariffPerKwh))
   const [days, setDays] = useState(String(settings.daysPerMonth))
   const [ppj, setPpj] = useState(String(settings.ppjPercent))
@@ -90,6 +92,29 @@ export default function SettingsPanel({ onClose }: Props) {
         </div>
 
         <div className="px-5 py-4 space-y-5 overflow-y-auto min-h-0">
+          {/* Appearance */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 block" style={{ fontFamily: 'var(--font-display)' }}>
+              Tampilan
+            </label>
+            <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-gray-100 dark:bg-emerald-900/40">
+              {(['system', 'light', 'dark'] as const).map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTheme(t)}
+                  className={`py-2 rounded-lg text-xs font-semibold transition-colors ${
+                    theme === t
+                      ? 'bg-white dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 shadow-sm'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                  }`}
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {t === 'system' ? 'Sistem' : t === 'light' ? 'Terang' : 'Gelap'}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Tariff presets */}
           <div>
             <label className="text-xs font-semibold text-gray-600 mb-2 block" style={{ fontFamily: 'var(--font-display)' }}>
