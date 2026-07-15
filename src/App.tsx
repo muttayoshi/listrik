@@ -125,7 +125,7 @@ export default function App() {
             className="text-xs text-gray-400 hover:text-emerald-600 transition-colors"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            ❤️ Dukung Pengembang
+            ❤️ Traktir Kopi Pengembang
           </button>
         </footer>
       </main>

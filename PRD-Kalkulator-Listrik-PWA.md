@@ -355,7 +355,7 @@ Nilai default & preset yang disarankan (dapat diperbarui, karena tarif dievaluas
 
 Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat aplikasi.
 
-- **Titik akses:** tautan kecil "❤️ Dukung Pengembang" di footer dashboard (selalu terlihat,
+- **Titik akses:** tautan kecil "❤️ Traktir Kopi Pengembang" di footer dashboard (selalu terlihat,
   baik saat ada ruangan maupun saat empty state) — bukan entri di Settings.
 - **Bentuk:** modal statis di dalam aplikasi, berisi daftar platform donasi (nama + tautan
   eksternal, opsional gambar QR). Konsisten dengan pola modal lain di aplikasi ini

@@ -83,7 +83,7 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
         JSON Fase 2 di **PRD §7.6** — kemungkinan bisa reuse mekanisme yang sama).
 
 - [x] **Halaman/bagian Donasi** — selesai. Ditambahkan ke PRD sebagai **§19**. Titik akses: tautan
-      "❤️ Dukung Pengembang" di footer dashboard (`src/App.tsx`), selalu terlihat. Modal
+      "❤️ Traktir Kopi Pengembang" di footer dashboard (`src/App.tsx`), selalu terlihat. Modal
       (`src/components/DonationModal.tsx`) menampilkan daftar platform dari
       `src/donation.ts` (`DONATION_PLATFORMS`) — **saat ini kosong**, menampilkan empty
       state jujur sampai tautan/QR platform asli tersedia dan diisi ke array tersebut.

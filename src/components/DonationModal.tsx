@@ -18,7 +18,7 @@ export default function DonationModal({ onClose }: Props) {
 
         <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100">
           <h2 className="text-base font-bold text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
-            Dukung Pengembang
+            Traktir Kopi Pengembang
           </h2>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 transition-colors">✕</button>
         </div>
