@@ -48,7 +48,7 @@ export default function App() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 rounded-full border-4 border-emerald-600 border-t-transparent animate-spin" />
-          <p className="text-sm text-gray-400" style={{ fontFamily: 'var(--font-display)' }}>Memuat…</p>
+          <p className="text-sm text-gray-400 dark:text-gray-500" style={{ fontFamily: 'var(--font-display)' }}>Memuat…</p>
         </div>
       </div>
     )
@@ -66,8 +66,7 @@ export default function App() {
     <div className="min-h-screen" style={{ background: 'var(--color-surface)' }}>
       {/* Header */}
       <header
-        className="sticky top-0 z-40 backdrop-blur-md border-b border-emerald-100/60"
-        style={{ background: 'rgba(248, 255, 254, 0.9)' }}
+        className="sticky top-0 z-40 backdrop-blur-md border-b border-emerald-100/60 dark:border-emerald-800/60 bg-[rgba(248,255,254,0.9)] dark:bg-[rgba(13,42,31,0.85)]"
       >
         <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -77,7 +76,7 @@ export default function App() {
             >
               ⚡
             </div>
-            <span className="font-extrabold text-gray-900 text-base tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="font-extrabold text-gray-900 dark:text-gray-100 text-base tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
               Hitung Pemakaian Listrik
             </span>
           </div>
@@ -85,7 +84,7 @@ export default function App() {
             {rooms.length > 0 && (
               <button
                 onClick={() => setModal({ type: 'share' })}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-emerald-50 text-gray-400 hover:text-emerald-600 transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-900/40 text-gray-400 dark:text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                 aria-label="Bagikan Data"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -96,7 +95,7 @@ export default function App() {
             )}
             <button
               onClick={() => setModal({ type: 'settings' })}
-              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-emerald-50 text-gray-400 hover:text-emerald-600 transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-900/40 text-gray-400 dark:text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
               aria-label="Pengaturan"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -119,7 +118,7 @@ export default function App() {
         ) : (
           <>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest" style={{ fontFamily: 'var(--font-display)' }}>
+              <h2 className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest" style={{ fontFamily: 'var(--font-display)' }}>
                 Ruangan ({rooms.length})
               </h2>
             </div>
@@ -140,7 +139,7 @@ export default function App() {
               {/* Add room inline button */}
               <button
                 onClick={() => setModal({ type: 'addRoom' })}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-dashed border-gray-200 text-sm font-semibold text-gray-400 hover:border-emerald-300 hover:text-emerald-600 hover:bg-emerald-50/40 transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-dashed border-gray-200 dark:border-emerald-800 text-sm font-semibold text-gray-400 dark:text-gray-500 hover:border-emerald-300 dark:hover:border-emerald-700 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/40 dark:hover:bg-emerald-950/40 transition-all"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -155,7 +154,7 @@ export default function App() {
         <footer className="mt-8 text-center">
           <button
             onClick={() => setModal({ type: 'donation' })}
-            className="text-xs text-gray-400 hover:text-emerald-600 transition-colors"
+            className="text-xs text-gray-400 dark:text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             ❤️ Traktir Kopi Pengembang
@@ -214,10 +213,10 @@ function EmptyState({ onAddRoom }: { onAddRoom: () => void }) {
       >
         🏠
       </div>
-      <h3 className="text-lg font-extrabold text-gray-900 mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+      <h3 className="text-lg font-extrabold text-gray-900 dark:text-gray-100 mb-2" style={{ fontFamily: 'var(--font-display)' }}>
         Mulai dari ruangan
       </h3>
-      <p className="text-sm text-gray-400 max-w-xs mb-6 leading-relaxed">
+      <p className="text-sm text-gray-400 dark:text-gray-500 max-w-xs mb-6 leading-relaxed">
         Tambahkan ruangan terlebih dahulu — dapur, kamar tidur, ruang tamu — lalu isi perangkat elektronik di tiap ruangan.
       </p>
       <button
