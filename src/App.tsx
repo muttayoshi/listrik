@@ -7,6 +7,7 @@ import RoomForm from './components/RoomForm'
 import DeviceForm from './components/DeviceForm'
 import SettingsPanel from './components/SettingsPanel'
 import InstallBanner from './components/InstallBanner'
+import DonationModal from './components/DonationModal'
 
 type Modal =
   | { type: 'addRoom' }
@@ -14,6 +15,7 @@ type Modal =
   | { type: 'addDevice'; roomId: string }
   | { type: 'editDevice'; device: Device }
   | { type: 'settings' }
+  | { type: 'donation' }
   | null
 
 export default function App() {
@@ -116,6 +118,16 @@ export default function App() {
             </div>
           </>
         )}
+
+        <footer className="mt-8 text-center">
+          <button
+            onClick={() => setModal({ type: 'donation' })}
+            className="text-xs text-gray-400 hover:text-emerald-600 transition-colors"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            ❤️ Dukung Pengembang
+          </button>
+        </footer>
       </main>
 
       {/* FAB — mobile only; desktop uses the inline "Tambah Ruangan" button in the list */}
@@ -149,6 +161,9 @@ export default function App() {
       )}
       {modal?.type === 'settings' && (
         <SettingsPanel onClose={() => setModal(null)} />
+      )}
+      {modal?.type === 'donation' && (
+        <DonationModal onClose={() => setModal(null)} />
       )}
     </div>
   )
