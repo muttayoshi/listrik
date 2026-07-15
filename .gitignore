@@ -15,3 +15,6 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Subagent-driven-development scratch state (not for commit)
+.superpowers/
