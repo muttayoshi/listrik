@@ -22,7 +22,7 @@ export default function DeviceCard({ device, settings, onEdit }: Props) {
   return (
     <button
       onClick={() => onEdit(device)}
-      className="w-full text-left bg-white rounded-2xl border border-gray-100 p-4 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-200 group"
+      className="w-full text-left bg-white dark:bg-emerald-950 rounded-2xl border border-gray-100 dark:border-emerald-900 p-4 shadow-sm hover:shadow-md hover:border-emerald-200 dark:hover:border-emerald-700 transition-all duration-200 group"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
@@ -32,18 +32,18 @@ export default function DeviceCard({ device, settings, onEdit }: Props) {
               style={{ backgroundColor: `hsl(${hue}, 75%, 48%)` }}
             />
             <p
-              className="font-semibold text-gray-900 truncate text-sm"
+              className="font-semibold text-gray-900 dark:text-gray-100 truncate text-sm"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               {device.name}
             </p>
             {device.quantity > 1 && (
-              <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full flex-shrink-0">
+              <span className="text-xs text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full flex-shrink-0">
                 ×{device.quantity}
               </span>
             )}
           </div>
-          <div className="flex gap-3 text-xs text-gray-400" style={{ fontFamily: 'var(--font-mono)' }}>
+          <div className="flex gap-3 text-xs text-gray-400 dark:text-gray-500" style={{ fontFamily: 'var(--font-mono)' }}>
             <span>{device.watt} W</span>
             <span>·</span>
             <span>{device.hoursPerDay} jam/hari</span>
@@ -52,13 +52,13 @@ export default function DeviceCard({ device, settings, onEdit }: Props) {
           </div>
         </div>
         <div className="text-right flex-shrink-0">
-          <p className="font-bold text-gray-900 text-sm" style={{ fontFamily: 'var(--font-display)' }}>
+          <p className="font-bold text-gray-900 dark:text-gray-100 text-sm" style={{ fontFamily: 'var(--font-display)' }}>
             {formatRupiah(monthlyCost)}
           </p>
-          <p className="text-xs text-gray-400">/bulan</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">/bulan</p>
         </div>
       </div>
-      <div className="mt-3 h-1 bg-gray-100 rounded-full overflow-hidden">
+      <div className="mt-3 h-1 bg-gray-100 dark:bg-emerald-900/50 rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-500"
           style={{
