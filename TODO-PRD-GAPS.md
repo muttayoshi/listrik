@@ -49,7 +49,13 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
 
 ## P2 — Fase 3+ (pengayaan)
 
-- [ ] **Dark mode** — belum ada. Lihat **PRD §6**.
+- [x] **Dark mode** — selesai. Toggle 3-way Sistem/Terang/Gelap di `SettingsPanel.tsx` (`src/theme.ts`),
+      persisten di `localStorage` (bukan tabel `Settings` Dexie, supaya tidak ikut ter-export/import/share).
+      Tailwind class-based `dark:` variant (`@custom-variant dark` di `src/index.css`) diterapkan menyeluruh
+      di seluruh dashboard dan modal. Lihat **PRD §6**.
+
+  Spec & plan implementasi: `docs/superpowers/specs/2026-07-15-dark-mode-design.md` dan
+  `docs/superpowers/plans/2026-07-15-dark-mode.md`.
 - [ ] **Multi-profil rumah** — belum ada. Lihat **PRD §6** dan **§17** (roadmap Fase 3).
 - [ ] **Tips hemat energi per perangkat** — belum ada. Lihat **PRD §6** dan **§17**.
 - [ ] **Mode perbandingan "sebelum vs sesudah"** — belum ada. Lihat **PRD §17**.
