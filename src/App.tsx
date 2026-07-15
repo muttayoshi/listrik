@@ -33,6 +33,7 @@ export default function App() {
   )
 
   useEffect(() => { load() }, [])
+  useEffect(() => { if (modal) setFabOpen(false) }, [modal])
 
   if (shareHash) {
     return (
