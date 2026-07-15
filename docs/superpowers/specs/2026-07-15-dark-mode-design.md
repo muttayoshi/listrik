@@ -56,7 +56,7 @@ semantik) — sejalan dengan konvensi proyek di `AGENTS.md` ("gunakan Tailwind u
 
 ## 4. Pemetaan class dark: per pola
 
-Semua 12 file komponen (`App.tsx`, `RoomCard.tsx`, `DeviceCard.tsx`, `RoomForm.tsx`, `DeviceForm.tsx`,
+Semua 11 file komponen (`App.tsx`, `RoomCard.tsx`, `DeviceCard.tsx`, `RoomForm.tsx`, `DeviceForm.tsx`,
 `SettingsPanel.tsx`, `SummaryCards.tsx`, `ShareModal.tsx`, `ShareView.tsx`, `InstallBanner.tsx`,
 `DonationModal.tsx`) mendapat varian `dark:` untuk pola berulang berikut:
 
