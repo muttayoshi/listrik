@@ -33,7 +33,7 @@ export default function DonationModal({ onClose }: Props) {
               <button
                 key={coffee.id}
                 onClick={() => setSelected(coffee)}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50 transition-colors text-left"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 hover:border-emerald-300 hover:bg-emerald-50/50 transition-colors text-left dark:border-emerald-800 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/40"
               >
                 <div
                   className="w-11 h-11 shrink-0 rounded-xl flex items-center justify-center text-xl"
@@ -42,12 +42,12 @@ export default function DonationModal({ onClose }: Props) {
                   {coffee.emoji}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-gray-700" style={{ fontFamily: 'var(--font-display)' }}>
+                  <div className="text-sm font-semibold text-gray-700 dark:text-gray-300" style={{ fontFamily: 'var(--font-display)' }}>
                     {coffee.name}
                   </div>
-                  <div className="text-xs text-gray-400">{coffee.subtitle}</div>
+                  <div className="text-xs text-gray-400 dark:text-gray-500">{coffee.subtitle}</div>
                 </div>
-                <div className="text-sm font-bold text-emerald-600 shrink-0">
+                <div className="text-sm font-bold text-emerald-600 shrink-0 dark:text-emerald-400">
                   {formatRupiah(coffee.price)}
                 </div>
               </button>
@@ -57,7 +57,7 @@ export default function DonationModal({ onClose }: Props) {
           <div className="px-5 py-6">
             <button
               onClick={() => setSelected(null)}
-              className="text-xs font-semibold text-gray-400 hover:text-emerald-600 transition-colors mb-4"
+              className="text-xs font-semibold text-gray-400 hover:text-emerald-600 transition-colors mb-4 dark:text-gray-500 dark:hover:text-emerald-400"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               ← Pilih kopi lain
@@ -70,22 +70,22 @@ export default function DonationModal({ onClose }: Props) {
               >
                 {selected.emoji}
               </div>
-              <div className="text-sm font-bold text-gray-700" style={{ fontFamily: 'var(--font-display)' }}>
+              <div className="text-sm font-bold text-gray-700 dark:text-gray-300" style={{ fontFamily: 'var(--font-display)' }}>
                 {selected.name}
               </div>
-              <div className="text-xs text-gray-400 mb-1">{selected.subtitle}</div>
-              <div className="text-base font-bold text-emerald-600">{formatRupiah(selected.price)}</div>
+              <div className="text-xs text-gray-400 mb-1 dark:text-gray-500">{selected.subtitle}</div>
+              <div className="text-base font-bold text-emerald-600 dark:text-emerald-400">{formatRupiah(selected.price)}</div>
             </div>
 
             {/* Replace this placeholder block with <img src={qrisImage} alt="QRIS" /> once a real QRIS PNG is available */}
             <div className="flex flex-col items-center">
-              <div className="w-40 h-40 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-300">
+              <div className="w-40 h-40 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center dark:border-emerald-800">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-300 dark:text-gray-600">
                   <path d="M4 4h5v5H4V4zm0 11h5v5H4v-5zM15 4h5v5h-5V4z" strokeLinejoin="round" />
                   <path d="M15 15h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2z" />
                 </svg>
               </div>
-              <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed max-w-[220px]">
+              <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed max-w-[220px] dark:text-gray-500">
                 QRIS belum tersedia — pemilik aplikasi belum menambahkan kode QRIS asli.
               </p>
             </div>
