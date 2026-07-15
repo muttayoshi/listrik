@@ -348,3 +348,27 @@ Nilai default & preset yang disarankan (dapat diperbarui, karena tarif dievaluas
 | R-1/TR | 900 VA (subsidi) | Rp605,00 |
 
 > Catatan: tarif dapat berubah tiap triwulan. Aplikasi harus mengizinkan pengguna mengedit/override nilai ini, dan preset di atas sebaiknya mudah diperbarui saat ada penyesuaian tarif baru.
+
+---
+
+## 19. Donasi
+
+Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat aplikasi.
+
+- **Titik akses:** tautan kecil "❤️ Dukung Pengembang" di footer dashboard (selalu terlihat,
+  baik saat ada ruangan maupun saat empty state) — bukan entri di Settings.
+- **Bentuk:** modal statis di dalam aplikasi, berisi daftar platform donasi (nama + tautan
+  eksternal, opsional gambar QR). Konsisten dengan pola modal lain di aplikasi ini
+  (Settings, Tambah Ruangan, dst.) — tidak ada halaman/route baru.
+- **Bukan proses pembayaran in-app.** Aplikasi tidak memproses, menyimpan, atau meneruskan
+  data pembayaran apa pun. Modal hanya menautkan keluar ke platform pihak ketiga (mis.
+  Saweria, Trakteer, QRIS) yang dikelola pengguna sendiri di luar aplikasi ini — selaras
+  dengan prinsip "sepenuhnya lokal, tanpa server" di **§1** dan **§11**.
+- **Klarifikasi terhadap non-goal §3.3:** non-goal "Pembayaran, top-up token" pada §3.3
+  merujuk pada transaksi listrik/PLN (mis. beli token listrik dalam aplikasi), **bukan**
+  donasi dukungan ke pembuat aplikasi. Kedua hal ini berbeda konteks dan tidak saling
+  bertentangan.
+- **Status data platform:** daftar platform donasi kosong secara default sampai pemilik
+  produk menyediakan tautan/QR asli — aplikasi menampilkan pesan jujur ("Tautan donasi
+  belum ditambahkan") alih-alih tautan placeholder yang bisa disalahartikan sebagai tujuan
+  pembayaran sungguhan.

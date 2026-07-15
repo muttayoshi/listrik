@@ -82,21 +82,14 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
         bisa **import** data itu ke local storage miliknya sendiri (hubungannya dengan fitur Export/Import
         JSON Fase 2 di **PRD §7.6** — kemungkinan bisa reuse mekanisme yang sama).
 
-- [ ] **Halaman/bagian Donasi** — tempat bagi pengguna yang ingin memberi dukungan (donasi) ke pembuat
-      aplikasi.
-      - Fitur baru, **belum ada di PRD manapun** — perlu ditambahkan ke PRD (mis. bagian baru §19) sebelum
-        dikerjakan.
-      - Berbeda dari fitur share, ini **tidak bertentangan langsung** dengan prinsip "tanpa backend" di §1/§11,
-        selama diimplementasikan sebagai **halaman statis berisi link/QR ke platform eksternal**
-        (mis. Saweria, Trakteer, QRIS, PayPal), bukan sebagai proses pembayaran in-app. Non-goal **§3.3**
-        ("Pembayaran, top-up token") merujuk ke transaksi listrik/PLN, jadi tidak relevan untuk kasus donasi
-        dukungan aplikasi ini — tapi tetap perlu dicatat eksplisit di PRD supaya tidak rancu dengan non-goal
-        tersebut.
-      - Keputusan yang perlu diambil sebelum implementasi:
-        - Titik akses: entri baru di menu Settings (ikon hati/donasi), atau tautan di footer/empty state?
-        - Platform donasi apa saja yang mau ditampilkan (perlu link/kode QR dari pemilik produk).
-        - Apakah cukup halaman statis (list link + QR image), atau perlu komponen interaktif (copy nomor
-          rekening, dsb.) — tetap tanpa backend/pemrosesan pembayaran sendiri.
+- [x] **Halaman/bagian Donasi** — selesai. Ditambahkan ke PRD sebagai **§19**. Titik akses: tautan
+      "❤️ Dukung Pengembang" di footer dashboard (`src/App.tsx`), selalu terlihat. Modal
+      (`src/components/DonationModal.tsx`) menampilkan daftar platform dari
+      `src/donation.ts` (`DONATION_PLATFORMS`) — **saat ini kosong**, menampilkan empty
+      state jujur sampai tautan/QR platform asli tersedia dan diisi ke array tersebut.
+
+  Spec & plan implementasi: `docs/superpowers/specs/2026-07-15-donation-page-design.md` dan
+  `docs/superpowers/plans/2026-07-15-donation-page.md`.
 
 ## Catatan: PRD belum mencerminkan fitur Ruangan yang sudah diimplementasikan
 
