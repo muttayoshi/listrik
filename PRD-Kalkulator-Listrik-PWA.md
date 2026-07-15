@@ -356,7 +356,8 @@ Nilai default & preset yang disarankan (dapat diperbarui, karena tarif dievaluas
 Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat aplikasi.
 
 - **Titik akses:** tautan kecil "❤️ Traktir Kopi Pengembang" di footer dashboard (selalu terlihat,
-  baik saat ada ruangan maupun saat empty state) — bukan entri di Settings.
+  baik saat ada ruangan maupun saat empty state), dan tombol dengan teks sama di dalam panel
+  Settings (`SettingsPanel.tsx`) — dua jalur ke modal yang sama.
 - **Bentuk:** modal statis di dalam aplikasi, berisi daftar platform donasi (nama + tautan
   eksternal, opsional gambar QR). Konsisten dengan pola modal lain di aplikasi ini
   (Settings, Tambah Ruangan, dst.) — tidak ada halaman/route baru.

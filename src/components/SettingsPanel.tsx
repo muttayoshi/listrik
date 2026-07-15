@@ -3,6 +3,7 @@ import { useStore } from '../store'
 import { PLN_TARIFFS } from '../db'
 import { formatRupiah } from '../utils'
 import { buildExportPayload, downloadJson, exportFilename, validateImportPayload } from '../exportImport'
+import DonationModal from './DonationModal'
 
 interface Props {
   onClose: () => void
@@ -14,6 +15,7 @@ export default function SettingsPanel({ onClose }: Props) {
   const [days, setDays] = useState(String(settings.daysPerMonth))
   const [ppj, setPpj] = useState(String(settings.ppjPercent))
   const [importError, setImportError] = useState('')
+  const [showDonation, setShowDonation] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function handleSave() {
@@ -189,6 +191,15 @@ export default function SettingsPanel({ onClose }: Props) {
             {importError && <p className="text-xs text-red-500 mt-1.5">{importError}</p>}
           </div>
 
+          {/* Donation */}
+          <button
+            onClick={() => setShowDonation(true)}
+            className="w-full py-3 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            ❤️ Traktir Kopi Pengembang
+          </button>
+
           <div className="rounded-xl bg-amber-50 border border-amber-200 p-3">
             <p className="text-xs text-amber-700" style={{ fontFamily: 'var(--font-display)' }}>
               <span className="font-bold">Data tersimpan lokal.</span> Semua data hanya ada di browser ini. Ganti browser atau bersihkan data situs → data hilang. Ini adalah <em>estimasi</em>, bukan tagihan resmi PLN.
@@ -206,6 +217,8 @@ export default function SettingsPanel({ onClose }: Props) {
           </button>
         </div>
       </div>
+
+      {showDonation && <DonationModal onClose={() => setShowDonation(false)} />}
     </div>
   )
 }
