@@ -59,7 +59,7 @@ export default function App() {
               ⚡
             </div>
             <span className="font-extrabold text-gray-900 text-base tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-              ListrikKu
+              Hitung Pemakaian Listrik
             </span>
           </div>
           <button
