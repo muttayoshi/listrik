@@ -46,24 +46,24 @@ export default function SummaryCards() {
         </p>
       </div>
 
-      <div className="rounded-2xl bg-white border border-emerald-100 p-4 shadow-sm">
-        <p className="text-xs text-gray-400 font-medium mb-1" style={{ fontFamily: 'var(--font-display)' }}>
+      <div className="rounded-2xl bg-white dark:bg-emerald-950 border border-emerald-100 dark:border-emerald-900 p-4 shadow-sm">
+        <p className="text-xs text-gray-400 dark:text-gray-500 font-medium mb-1" style={{ fontFamily: 'var(--font-display)' }}>
           Konsumsi Harian
         </p>
-        <p className="text-xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-mono)' }}>
+        <p className="text-xl font-bold text-gray-900 dark:text-gray-100" style={{ fontFamily: 'var(--font-mono)' }}>
           {formatKwh(totals.dailyKwh)}
         </p>
-        <p className="text-xs text-gray-400 mt-0.5">kWh/hari</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">kWh/hari</p>
       </div>
 
-      <div className="rounded-2xl bg-white border border-emerald-100 p-4 shadow-sm">
-        <p className="text-xs text-gray-400 font-medium mb-1" style={{ fontFamily: 'var(--font-display)' }}>
+      <div className="rounded-2xl bg-white dark:bg-emerald-950 border border-emerald-100 dark:border-emerald-900 p-4 shadow-sm">
+        <p className="text-xs text-gray-400 dark:text-gray-500 font-medium mb-1" style={{ fontFamily: 'var(--font-display)' }}>
           Konsumsi Bulanan
         </p>
-        <p className="text-xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-mono)' }}>
+        <p className="text-xl font-bold text-gray-900 dark:text-gray-100" style={{ fontFamily: 'var(--font-mono)' }}>
           {formatKwh(totals.monthlyKwh)}
         </p>
-        <p className="text-xs text-gray-400 mt-0.5">kWh/bulan</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">kWh/bulan</p>
       </div>
     </div>
   )
