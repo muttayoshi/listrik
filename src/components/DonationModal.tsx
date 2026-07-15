@@ -15,16 +15,16 @@ export default function DonationModal({ onClose }: Props) {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl">
+      <div className="relative z-10 w-full sm:max-w-sm bg-white dark:bg-emerald-950 rounded-t-3xl sm:rounded-3xl shadow-2xl">
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-200" />
+          <div className="w-10 h-1 rounded-full bg-gray-200 dark:bg-emerald-800" />
         </div>
 
-        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100">
-          <h2 className="text-base font-bold text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100 dark:border-emerald-900">
+          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100" style={{ fontFamily: 'var(--font-display)' }}>
             Traktir Kopi Pengembang
           </h2>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 transition-colors">✕</button>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-emerald-900/40 text-gray-400 dark:text-gray-500 transition-colors">✕</button>
         </div>
 
         {selected === null ? (

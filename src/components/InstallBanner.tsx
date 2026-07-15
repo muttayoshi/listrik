@@ -52,8 +52,8 @@ export default function InstallBanner() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 pt-3">
-      <div className="flex items-center justify-between gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3">
-        <p className="text-xs text-emerald-800 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
+      <div className="flex items-center justify-between gap-3 rounded-2xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-3">
+        <p className="text-xs text-emerald-800 dark:text-emerald-300 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
           {showIOSInstructions
             ? <>Pasang di layar utama: ketuk <strong>Bagikan</strong> lalu <strong>Tambah ke Layar Utama</strong>.</>
             : <>Pasang Listrikku sebagai aplikasi untuk akses lebih cepat.</>}
@@ -71,7 +71,7 @@ export default function InstallBanner() {
           <button
             onClick={handleDismiss}
             aria-label="Tutup"
-            className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-emerald-100 text-emerald-700 transition-colors text-sm"
+            className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 transition-colors text-sm"
           >
             ✕
           </button>
