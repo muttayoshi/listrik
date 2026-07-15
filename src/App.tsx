@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useStore } from './store'
+import { useTheme } from './theme'
 import type { Device, Room } from './db'
 import SummaryCards from './components/SummaryCards'
 import RoomCard from './components/RoomCard'
@@ -24,6 +25,7 @@ type Modal =
 
 export default function App() {
   const { rooms, devices, settings, loaded, load } = useStore()
+  const [theme, setTheme] = useTheme()
   const [modal, setModal] = useState<Modal>(null)
   const [shareHash, setShareHash] = useState(() =>
     location.hash.startsWith(SHARE_HASH_PREFIX) ? location.hash : null
@@ -192,7 +194,7 @@ export default function App() {
         <DeviceForm device={modal.device} onClose={() => setModal(null)} />
       )}
       {modal?.type === 'settings' && (
-        <SettingsPanel onClose={() => setModal(null)} />
+        <SettingsPanel onClose={() => setModal(null)} theme={theme} setTheme={setTheme} />
       )}
       {modal?.type === 'donation' && (
         <DonationModal onClose={() => setModal(null)} />

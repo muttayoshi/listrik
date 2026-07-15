@@ -4,15 +4,16 @@ import { PLN_TARIFFS } from '../db'
 import { formatRupiah } from '../utils'
 import { buildExportPayload, downloadJson, exportFilename, validateImportPayload } from '../exportImport'
 import DonationModal from './DonationModal'
-import { useTheme } from '../theme'
+import type { ThemePreference } from '../theme'
 
 interface Props {
   onClose: () => void
+  theme: ThemePreference
+  setTheme: (t: ThemePreference) => void
 }
 
-export default function SettingsPanel({ onClose }: Props) {
+export default function SettingsPanel({ onClose, theme, setTheme }: Props) {
   const { rooms, devices, settings, updateSettings, importData } = useStore()
-  const [theme, setTheme] = useTheme()
   const [tariff, setTariff] = useState(String(settings.tariffPerKwh))
   const [days, setDays] = useState(String(settings.daysPerMonth))
   const [ppj, setPpj] = useState(String(settings.ppjPercent))
