@@ -365,8 +365,8 @@ Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat ap
   discan manual. Konsisten dengan pola modal lain di aplikasi ini (Settings, Tambah Ruangan,
   dst.) — tidak ada halaman/route baru.
 - **Bukan proses pembayaran in-app.** Aplikasi tidak memproses, menyimpan, atau meneruskan
-  data pembayaran apa pun. Modal hanya menautkan keluar ke platform pihak ketiga (mis.
-  Saweria, Trakteer, QRIS) yang dikelola pengguna sendiri di luar aplikasi ini — selaras
+  data pembayaran apa pun. Modal hanya menampilkan kode QRIS untuk dipindai secara manual
+  memakai aplikasi perbankan/e-wallet milik pengguna sendiri di luar aplikasi ini — selaras
   dengan prinsip "sepenuhnya lokal, tanpa server" di **§1** dan **§11**.
 - **Klarifikasi terhadap non-goal §3.3:** non-goal "Pembayaran, top-up token" pada §3.3
   merujuk pada transaksi listrik/PLN (mis. beli token listrik dalam aplikasi), **bukan**
