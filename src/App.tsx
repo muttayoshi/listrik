@@ -27,6 +27,7 @@ export default function App() {
   const { rooms, devices, settings, loaded, load } = useStore()
   const [theme, setTheme] = useTheme()
   const [modal, setModal] = useState<Modal>(null)
+  const [fabOpen, setFabOpen] = useState(false)
   const [shareHash, setShareHash] = useState(() =>
     location.hash.startsWith(SHARE_HASH_PREFIX) ? location.hash : null
   )
@@ -166,18 +167,56 @@ export default function App() {
 
       {/* FAB — mobile only; desktop uses the inline "Tambah Ruangan" button in the list */}
       {rooms.length > 0 && (
-        <div className="fixed bottom-6 right-4 sm:hidden z-30">
-          <button
-            onClick={() => setModal({ type: 'addRoom' })}
-            className="flex items-center gap-2.5 px-5 py-3.5 rounded-full text-white font-bold text-sm shadow-lg hover:shadow-xl active:scale-95 transition-all"
-            style={{ background: 'linear-gradient(135deg, #059669, #047857)', fontFamily: 'var(--font-display)' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            Tambah Ruangan
-          </button>
-        </div>
+        <>
+          {fabOpen && (
+            <div className="fixed inset-0 z-20" onClick={() => setFabOpen(false)} />
+          )}
+          <div className="fixed bottom-6 right-4 sm:hidden z-30">
+            <button
+              onClick={() => {
+                setFabOpen(false)
+                setModal({ type: 'addRoom' })
+              }}
+              className={`absolute bottom-32 right-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-emerald-950 text-gray-700 dark:text-gray-300 font-semibold text-sm shadow-lg whitespace-nowrap transition-all duration-200 ${
+                fabOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+              }`}
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Tambah Ruangan
+            </button>
+            <button
+              onClick={() => {
+                setFabOpen(false)
+                setModal({ type: 'addDevice', roomId: rooms[0].id })
+              }}
+              className={`absolute bottom-16 right-0 flex items-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-emerald-950 text-gray-700 dark:text-gray-300 font-semibold text-sm shadow-lg whitespace-nowrap transition-all duration-200 ${
+                fabOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+              }`}
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Tambah Perangkat
+            </button>
+            <button
+              onClick={() => setFabOpen((o) => !o)}
+              aria-label={fabOpen ? 'Tutup menu tambah' : 'Tambah'}
+              className="flex items-center justify-center w-14 h-14 rounded-full text-white shadow-lg hover:shadow-xl active:scale-95 transition-all"
+              style={{ background: 'linear-gradient(135deg, #059669, #047857)' }}
+            >
+              <svg
+                width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
+                className={`transition-transform duration-200 ${fabOpen ? 'rotate-45' : ''}`}
+              >
+                <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+          </div>
+        </>
       )}
 
       {/* Modals */}
