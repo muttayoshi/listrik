@@ -101,22 +101,22 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90vh]">
+      <div className="relative z-10 w-full sm:max-w-md bg-white dark:bg-emerald-950 rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[90vh]">
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-200" />
+          <div className="w-10 h-1 rounded-full bg-gray-200 dark:bg-emerald-800" />
         </div>
 
-        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100">
-          <h2 className="text-base font-bold text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+        <div className="px-5 pt-3 pb-2 flex items-center justify-between border-b border-gray-100 dark:border-emerald-900">
+          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100" style={{ fontFamily: 'var(--font-display)' }}>
             {device ? 'Edit Perangkat' : 'Tambah Perangkat'}
           </h2>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 transition-colors">✕</button>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-emerald-900/40 text-gray-400 dark:text-gray-500 transition-colors">✕</button>
         </div>
 
         <div className="overflow-y-auto flex-1 px-5 py-4 space-y-4">
           {/* Room selector */}
           <div>
-            <label className="text-xs font-semibold text-gray-600 mb-2 block" style={{ fontFamily: 'var(--font-display)' }}>
+            <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 block" style={{ fontFamily: 'var(--font-display)' }}>
               Ruangan *
             </label>
             <div className="flex flex-wrap gap-1.5">
@@ -126,21 +126,21 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
                   onClick={() => setRoomId(r.id)}
                   className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-colors ${
                     roomId === r.id
-                      ? 'bg-emerald-100 border-emerald-400 text-emerald-700 font-semibold'
-                      : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-emerald-200 hover:bg-emerald-50'
+                      ? 'bg-emerald-100 dark:bg-emerald-900/60 border-emerald-400 text-emerald-700 dark:text-emerald-300 font-semibold'
+                      : 'bg-gray-50 dark:bg-emerald-900/20 border-gray-200 dark:border-emerald-800 text-gray-600 dark:text-gray-400 hover:border-emerald-200 dark:hover:border-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-950/40'
                   }`}
                 >
                   <span>{r.icon}</span> {r.name}
                 </button>
               ))}
             </div>
-            {errors.room && <p className="text-xs text-red-500 mt-1">{errors.room}</p>}
+            {errors.room && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.room}</p>}
           </div>
 
           {/* Presets */}
           {showPresets && (
             <div>
-              <p className="text-xs text-gray-400 mb-2 font-medium" style={{ fontFamily: 'var(--font-display)' }}>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 font-medium" style={{ fontFamily: 'var(--font-display)' }}>
                 Preset perangkat
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -148,7 +148,7 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
                   <button
                     key={p.name}
                     onClick={() => { setName(p.name); setWatt(String(p.watt)); setShowPresets(false) }}
-                    className="text-xs px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors"
+                    className="text-xs px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
                   >
                     {p.name}
                   </button>
@@ -159,7 +159,7 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
 
           {/* Name */}
           <div>
-            <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+            <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
               Nama Perangkat *
             </label>
             <input
@@ -168,14 +168,14 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
               onChange={(e) => setName(e.target.value)}
               placeholder="mis. Kulkas Samsung"
               maxLength={50}
-              className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 ${errors.name ? 'border-red-400' : 'border-gray-200'}`}
+              className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 dark:focus:ring-emerald-900/40 dark:bg-emerald-950 dark:text-gray-100 ${errors.name ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-emerald-800'}`}
             />
-            {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.name}</p>}
           </div>
 
           {/* Watt */}
           <div>
-            <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+            <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
               Daya (Watt) *
             </label>
             <input
@@ -184,14 +184,14 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
               onChange={(e) => setWatt(e.target.value)}
               placeholder="mis. 100"
               min="0"
-              className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono ${errors.watt ? 'border-red-400' : 'border-gray-200'}`}
+              className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 dark:focus:ring-emerald-900/40 dark:bg-emerald-950 dark:text-gray-100 font-mono ${errors.watt ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-emerald-800'}`}
             />
-            {errors.watt && <p className="text-xs text-red-500 mt-1">{errors.watt}</p>}
+            {errors.watt && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.watt}</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+              <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
                 Jam / Hari *
               </label>
               <input
@@ -202,12 +202,12 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
                 min="0"
                 max="24"
                 step="0.5"
-                className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono ${errors.hours ? 'border-red-400' : 'border-gray-200'}`}
+                className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 dark:focus:ring-emerald-900/40 dark:bg-emerald-950 dark:text-gray-100 font-mono ${errors.hours ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-emerald-800'}`}
               />
-              {errors.hours && <p className="text-xs text-red-500 mt-1">{errors.hours}</p>}
+              {errors.hours && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.hours}</p>}
             </div>
             <div>
-              <label className="text-xs font-semibold text-gray-600 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
+              <label className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 block" style={{ fontFamily: 'var(--font-display)' }}>
                 Jumlah Unit
               </label>
               <input
@@ -216,27 +216,27 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
                 onChange={(e) => setQty(e.target.value)}
                 placeholder="1"
                 min="1"
-                className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 font-mono ${errors.qty ? 'border-red-400' : 'border-gray-200'}`}
+                className={`w-full px-4 py-3 rounded-xl border text-sm transition-colors outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 dark:focus:ring-emerald-900/40 dark:bg-emerald-950 dark:text-gray-100 font-mono ${errors.qty ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-emerald-800'}`}
               />
-              {errors.qty && <p className="text-xs text-red-500 mt-1">{errors.qty}</p>}
+              {errors.qty && <p className="text-xs text-red-500 dark:text-red-400 mt-1">{errors.qty}</p>}
             </div>
           </div>
 
           {/* Preview */}
           {preview && (
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3">
-              <p className="text-xs text-emerald-600 font-semibold mb-1" style={{ fontFamily: 'var(--font-display)' }}>Estimasi biaya</p>
-              <p className="text-lg font-bold text-emerald-700" style={{ fontFamily: 'var(--font-display)' }}>
+            <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl p-3">
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-1" style={{ fontFamily: 'var(--font-display)' }}>Estimasi biaya</p>
+              <p className="text-lg font-bold text-emerald-700 dark:text-emerald-300" style={{ fontFamily: 'var(--font-display)' }}>
                 {formatRupiah(preview.monthlyCost)}<span className="text-sm font-medium">/bulan</span>
               </p>
-              <p className="text-xs text-emerald-500 mt-0.5" style={{ fontFamily: 'var(--font-mono)' }}>
+              <p className="text-xs text-emerald-500 dark:text-emerald-400 mt-0.5" style={{ fontFamily: 'var(--font-mono)' }}>
                 {preview.monthlyKwh.toFixed(2)} kWh/bulan · {preview.dailyKwh.toFixed(2)} kWh/hari
               </p>
             </div>
           )}
         </div>
 
-        <div className="px-5 pt-3 pb-5 border-t border-gray-100 space-y-2">
+        <div className="px-5 pt-3 pb-5 border-t border-gray-100 dark:border-emerald-900 space-y-2">
           <button
             onClick={handleSave}
             className="w-full py-3.5 rounded-2xl text-white font-bold text-sm transition-all hover:opacity-90 active:scale-[0.98]"
@@ -248,11 +248,11 @@ export default function DeviceForm({ device, defaultRoomId, onClose }: Props) {
           {device && (
             delConfirm ? (
               <div className="flex gap-2">
-                <button onClick={() => setDelConfirm(false)} className="flex-1 py-3 rounded-2xl border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-colors">Batal</button>
-                <button onClick={handleDelete} className="flex-1 py-3 rounded-2xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition-colors">Ya, Hapus</button>
+                <button onClick={() => setDelConfirm(false)} className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-emerald-800 text-gray-500 dark:text-gray-400 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-emerald-900/30 transition-colors">Batal</button>
+                <button onClick={handleDelete} className="flex-1 py-3 rounded-2xl bg-red-500 dark:bg-red-600 text-white text-sm font-bold hover:bg-red-600 dark:hover:bg-red-500 transition-colors">Ya, Hapus</button>
               </div>
             ) : (
-              <button onClick={() => setDelConfirm(true)} className="w-full py-3 rounded-2xl text-red-500 text-sm font-semibold hover:bg-red-50 transition-colors">
+              <button onClick={() => setDelConfirm(true)} className="w-full py-3 rounded-2xl text-red-500 dark:text-red-400 text-sm font-semibold hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors">
                 Hapus Perangkat
               </button>
             )
