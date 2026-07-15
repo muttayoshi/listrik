@@ -63,24 +63,18 @@ Status implementasi lain (sudah sesuai/melebihi PRD) tidak diulang di sini — f
 
 ## Fitur baru — belum tercakup di PRD sama sekali
 
-- [ ] **Tombol Share (bagikan link berisi data)** — saat menekan tombol share, aplikasi membuat sebuah link
-      yang jika dibuka orang lain, langsung menampilkan seluruh data (ruangan + perangkat + hasil hitungan)
-      yang sudah dibuat, tanpa perlu input ulang.
-      - Ini fitur baru, **belum ada di PRD manapun** (bukan P0/P1/P2) — perlu ditambahkan dulu ke PRD
-        sebelum dikerjakan, karena berpotongan langsung dengan prinsip arsitektur inti di **PRD §1 dan §11**
-        ("Sepenuhnya lokal... tidak ada server, tidak ada data yang dikirim keluar") dan non-goal di **§3.3**
-        ("Sinkronisasi antar-perangkat / cloud backup").
-      - Keputusan desain yang perlu diambil sebelum implementasi:
-        - **Tanpa backend** (selaras §1/§11): encode seluruh data jadi string terkompresi di URL
-          (query param/hash), halaman "view" membaca & render langsung dari URL tanpa butuh menyimpan ke
-          IndexedDB penerima. Risiko: URL bisa sangat panjang kalau data (ruangan/perangkat) banyak — perlu
-          strategi kompresi (mis. `lz-string`) dan batas ukuran wajar.
-        - **Dengan backend ringan** (menyimpang dari §1/§11): data disimpan di server, link hanya berisi ID
-          referensi. Lebih ringkas & tidak ada batas panjang URL, tapi mengubah "tanpa backend, offline-first"
-          jadi asumsi produk yang harus direvisi total di PRD (§1, §11, §13 tech stack).
-      - Perlu didefinisikan juga: apakah halaman hasil share **read-only** (sekadar dilihat), atau penerima
-        bisa **import** data itu ke local storage miliknya sendiri (hubungannya dengan fitur Export/Import
-        JSON Fase 2 di **PRD §7.6** — kemungkinan bisa reuse mekanisme yang sama).
+- [x] **Tombol Share (bagikan link berisi data)** — selesai. Ditambahkan ke PRD sebagai **§20**.
+      Tanpa backend: payload (format sama dengan Export/Import) dikompresi (`lz-string`) ke hash
+      fragment URL (`src/share.ts`). Tombol share muncul di header dashboard (`src/App.tsx`) saat
+      ada minimal satu ruangan, membuka `src/components/ShareModal.tsx` yang menampilkan link
+      untuk disalin/dibagikan. Membuka link menampilkan pratinjau read-only
+      (`src/components/ShareView.tsx`) — data lokal penerima baru berubah jika penerima menekan
+      "Import ke Perangkat Ini" secara eksplisit, memakai mekanisme replace-total yang sama dengan
+      Import JSON. Jika data melebihi batas panjang link, perangkat dengan biaya bulanan terkecil
+      dibuang lebih dulu (bukan potongan string mentah), dengan peringatan ke pengguna.
+
+  Spec & plan implementasi: `docs/superpowers/specs/2026-07-15-share-feature-design.md` dan
+  `docs/superpowers/plans/2026-07-15-share-feature.md`.
 
 - [x] **Halaman/bagian Donasi** — selesai. Ditambahkan ke PRD sebagai **§19**. Titik akses: tautan
       "❤️ Traktir Kopi Pengembang" di footer dashboard (`src/App.tsx`), selalu terlihat. Modal

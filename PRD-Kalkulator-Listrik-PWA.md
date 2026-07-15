@@ -373,3 +373,33 @@ Fitur dukungan sukarela bagi pengguna yang ingin memberi apresiasi ke pembuat ap
   produk menyediakan tautan/QR asli — aplikasi menampilkan pesan jujur ("Tautan donasi
   belum ditambahkan") alih-alih tautan placeholder yang bisa disalahartikan sebagai tujuan
   pembayaran sungguhan.
+
+---
+
+## 20. Fitur Share (Bagikan Data)
+
+Fitur yang memungkinkan pengguna membuat link berisi seluruh data (ruangan + perangkat +
+pengaturan) miliknya, untuk dibagikan ke siapa pun lewat kanal apa pun (WhatsApp, email, dst.)
+yang mereka pilih sendiri.
+
+- **Mekanisme — tanpa backend.** Seluruh payload (format sama dengan Export/Import JSON §7.6)
+  di-serialize ke JSON, dikompresi (`lz-string`), dan ditaruh di **hash fragment URL**
+  (`#share=<data-terkompresi>`), bukan query param — supaya tidak pernah singgah di log server
+  mana pun, termasuk hosting statis sekalipun. Tidak ada server yang menyimpan atau memproses
+  data ini kapan pun; link hanya wadah data yang dipindahkan lewat kanal pilihan pengguna sendiri.
+- **Klarifikasi terhadap non-goal §3.3:** non-goal "Sinkronisasi antar-perangkat / cloud backup"
+  merujuk pada aplikasi yang **secara otomatis** menjaga data tetap sinkron antar-perangkat lewat
+  infrastrukturnya sendiri. Fitur ini berbeda: satu link statis, dibuat manual oleh pengguna,
+  sekali pakai, tanpa koneksi berkelanjutan apa pun ke aplikasi — jadi tidak bertentangan dengan
+  non-goal tersebut, juga tidak dengan prinsip "sepenuhnya lokal, tanpa server" di **§1** dan
+  **§11**.
+- **Pratinjau read-only, import bersifat opsional.** Membuka link share **tidak pernah**
+  mengubah data lokal penerima secara diam-diam. Penerima selalu melihat pratinjau (ruangan,
+  perangkat, hasil hitungan) lebih dulu; hanya jika penerima menekan tombol eksplisit
+  **"Import ke Perangkat Ini"**, data itu ditulis ke IndexedDB miliknya — memakai mekanisme
+  replace-total yang sama dengan Import JSON (§7.6), termasuk konfirmasi sebelum menimpa.
+- **Penanganan data yang terlalu besar.** Jika hasil kompresi melebihi ambang aman (4.000
+  karakter), aplikasi **memotong perangkat, bukan string mentah** — perangkat dengan kontribusi
+  biaya bulanan paling kecil dibuang lebih dulu, satu per satu, sampai link muat. Ruangan yang
+  jadi kosong ikut dibuang. Pengguna diberi tahu berapa perangkat yang tidak disertakan sebelum
+  membagikan link tersebut.
